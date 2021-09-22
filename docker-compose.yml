@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+  nginx-php-fpm:
+    build: .
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/var/www/html
+    environment:
+      BASE_URL: http://localhost:8080
+      AUTHORIZATION_ENDPOINT: https://qkv4k.production.test/oauth/authorize
+      TOKEN_ENDPOINT: https://qkv4k.production.test/oauth/token
+      REDIS_URL: redis:6379
+  redis:
+    image: "redis:alpine"
